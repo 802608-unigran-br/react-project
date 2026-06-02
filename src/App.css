@@ -13,6 +13,29 @@ body {
   margin: 0 10%;
 }
 
+.badge-favoritos { background: #831843; color: #fda4af; border: 1px solid #be185d; font-size: 13px; padding: 6px 14px; border-radius: 999px; font-weight: bold; }
+
+.btn-fav {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, .5);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .2s;
+}
+
+.btn-fav:hover {
+  transform: scale(1.2);
+}
+
 /* HEADER */
 .header {
   display: flex;
@@ -120,17 +143,22 @@ body {
 /* CARDS — complete a estilização! */
 .card {
   background: #1e293b;
-  border: 1px solid #334155;
+  outline: 1px solid #334155;
   border-radius: 14px;
   overflow: hidden;
-  transition: all 0.25s;
+  transition: all 0.25s ease;
   cursor: pointer;
 }
 
 .card:hover {
-  border-color: #10b981;
+  outline-color: #10b981;
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+}
+
+.card-fav:hover {
+  outline-color: #dd3e7b;
+  outline-width: 4px;
 }
 
 .card-img {
