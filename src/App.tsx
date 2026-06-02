@@ -28,7 +28,7 @@ function App() {
   // Use [pagina, filtroStatus] como array de dependências.
   useEffect(() => {
     buscarPersonagens();
-  }, [pagina, filtroStatus]);
+  }, [busca, pagina, filtroStatus]);
 
 
   // ─── MISSÃO 6: Função de busca assíncrona ───────────────────
@@ -39,7 +39,7 @@ function App() {
     setLoading(true);
     setErro(null);
 
-    const url = `https://rickandmortyapi.com/api/character?page=${pagina}` + filtroStatus === "All" && `&status=${filtroStatus}`;
+    const url = `https://rickandmortyapi.com/api/character?page=${pagina}` + (busca === "" ? "" : `&name=${busca}`) + (filtroStatus === "all" ? "" : `&status=${filtroStatus}`);
 
     // nota: prefiro usar .then()
     try {
@@ -50,7 +50,7 @@ function App() {
               setInfo(json.info);
 
               var tempPersonagens : Personagem[] = [];
-              json.results.foreach(e => {
+              json.results.forEach(e => {
                 tempPersonagens.push({
                   id: e.id,
                   name: e.name,
@@ -100,7 +100,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div>
-          <h1>🧬 Painel de Personagens</h1>
+          <h1>Painel de Personagens</h1>
           <p className="subtitulo">Dados consumidos da Rick and Morty API</p>
         </div>
         {/* Exiba o contador: info?.count personagens */}
@@ -114,7 +114,7 @@ function App() {
         <input
           type="text"
           className="campo-busca"
-          placeholder="🔍 Buscar por nome..."
+          placeholder="Buscar por nome..."
           value={busca}
           onChange={e => setBusca(e.target.value)}
         />
@@ -137,8 +137,8 @@ function App() {
       </div>
 
       {/* Mensagens de status */}
-      {loading && <p className="status loading">⏳ Carregando personagens...</p>}
-      {erro && <p className="status erro">❌ {erro}</p>}
+      {loading && <p className="status loading">Carregando personagens...</p>}
+      {erro && <p className="status erro">❌ {erro.toString()}</p>}
 
       {/* MISSÃO 8c: Renderize o grid com CartaoPersonagem */}
       {!loading && !erro && (

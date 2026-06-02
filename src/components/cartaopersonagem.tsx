@@ -35,6 +35,12 @@ function CartaoPersonagem({ personagem, onClick }: Props) {
         className="card-img"
       />
       <div className="card-body">
+        
+        <div className="card-nome">{personagem.name}</div>
+        <div className="card-especie">{personagem.species}</div>
+
+        <span className={`badge badge-${personagem.status.toLowerCase()}`}>{personagem.status.charAt(0).toUpperCase() + personagem.status.slice(1)}</span>
+
         {/* MISSÃO 3: Complete o JSX do card
             - Exiba personagem.name com a classe "card-nome"
             - Exiba personagem.species com a classe "card-especie"
